@@ -1,4 +1,4 @@
-# CharacterCounter
+# 【習作】CharacterCounter
 PySimpleGUIを利用した文字数カウント機能付きの簡単なメモ帳ソフトウェアです。  
 大学のリアクションペーパー提出の効率化、およびPySimpleGUI・pypertextに習熟することを目的に作成しました。
 ## 機能
