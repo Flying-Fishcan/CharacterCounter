@@ -29,7 +29,7 @@ while True:
         directory = sg.popup_get_folder('Select folder') #フォルダーを選択
         file_name = sg.popup_get_text('Enter file name') #ファイル名を入力
         if directory or file_name == None:
-            break
+            pass
         else:
             file_path = directory + '/' + file_name + '.txt' #ディレクトリとファイル名を結合
             with open(file_path, 'w') as f:
@@ -38,7 +38,7 @@ while True:
     if event == 'Load':
         load_file = sg.popup_get_file('Select file', file_types=(('Text Files', '.txt'),)) #ファイルを選択
         if load_file == None:
-            break
+            pass
         else:
             with open(load_file, 'r') as f:
                 load_data = f.read()
