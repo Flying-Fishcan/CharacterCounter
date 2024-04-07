@@ -29,23 +29,35 @@ while True:
         directory = sg.popup_get_folder('Select folder') #フォルダーを選択
         file_name = sg.popup_get_text('Enter file name') #ファイル名を入力
         if directory == '':
-            pass
+            continue
         elif file_name == '':
-            pass
+            continue
         else:
             file_path = directory + '/' + file_name + '.txt' #ディレクトリとファイル名を結合
-            with open(file_path, 'w') as f:
+            try:
+                f = open(file_path, 'w')
+            except FileNotFoundError:
+                continue #存在しないディレクトリを入力された際の例外処理
+            else:
+                f = open(file_path, 'w')
                 f.write(values['notepad']) #メモ帳のデータをtxtファイルに出力
-
+                f.close()
+                
     if event == 'Load':
         load_file = sg.popup_get_file('Select file', file_types=(('Text Files', '.txt'),)) #ファイルを選択
         if load_file == '':
-            pass
+            continue
         else:
-            with open(load_file, 'r') as f:
+            try:
+                f = open(file_path, 'w')
+            except FileNotFoundError:
+                continue #存在しないファイルを入力された際の例外処理
+            else:
+                f = open(load_file, 'r')
                 load_data = f.read()
                 window['notepad'].update('') #メモ帳のデータをリセット
                 window['notepad'].print(load_data) #txtファイルのデータをメモ帳に出力
+                f.close()
 
     if event == 'notepad':
         window['count'].update(f'Characters: {len(values['notepad'])}') #入力の度に文字数を更新する
